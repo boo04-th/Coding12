@@ -47,3 +47,35 @@ document.addEventListener("DOMContentLoaded", function(){ // encapsulates most o
 
         card.style.backgroundColor = "#fdebd0";
     });
+
+
+    // Task 4: Business Customer Section – Handling Event Bubbling
+
+    const customerSectionDiv = document.getElementById("customerSection");
+
+    function addCustomerCard(name) { // creates a function to add a customer card
+        const customerDiv = document.createElement("div");
+
+        customerDiv.setAttribute("class", "customer-card");
+
+        customerDiv.textContent = name;
+
+        customerDiv.addEventListener("click", (event) => { // listens for an event
+            console.log("Customer Card Clicked"); // logs the sentence in the console when event is heard
+            event.stopPropagation;
+        });
+
+        customerSectionDiv.appendChild(customerDiv);
+    };
+
+    customerSectionDiv.addEventListener("click", () => { // listen for an event "click"
+        console.log("Customer Section Clicked"); // when hears event logs message in the console
+    });
+
+    // creates the customer card
+    addCustomerCard("First Customer");
+    addCustomerCard("Second Customer");
+    
+});
+
+
