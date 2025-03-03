@@ -32,4 +32,18 @@ document.addEventListener("DOMContentLoaded", function(){ // encapsulates most o
         return metricDiv;
     };
 
-    
+// Task 2: Updating Dashboard Metrics – Working with NodeLists and Arrays
+    // creates the metric cards 
+    dashboard2.appendChild(createMetricCard("profitCard", "Profit", 80));
+    dashboard.appendChild(createMetricCard("expensesCard", "Expenses", 50));
+
+    const metricCards = document.querySelectorAll(".metric-card");
+    const metricCardsArray = Array.from(metricCards); // makes metricCards an array
+
+    metricCardsArray.forEach((card) => { // goes through the array for each item
+        const myHeading = card.querySelector("h3");
+
+        myHeading.textContent += " - Updated"; // updates the revenue
+
+        card.style.backgroundColor = "#fdebd0";
+    });
