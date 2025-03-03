@@ -78,4 +78,22 @@ document.addEventListener("DOMContentLoaded", function(){ // encapsulates most o
     
 });
 
+// Task 3: Dynamic Inventory Management – Adding and Removing Items
 
+function addItemToInventory(product) { // creates function that will add inventory items
+    const inventoryList = document.getElementById("inventoryList");
+    const newListItem = document.createElement("li");
+
+    // sets attributes for list items
+    newListItem.setAttribute("class", "product-item");
+    newListItem.setAttribute("data-product", product);
+    newListItem.textContent = product;
+
+    newListItem.addEventListener("click", function() { // listens for a click event
+        inventoryList.removeChild(product); // removes item in inventory list
+
+        console.log(`Removed Item: ${product}`); // logs the removed items in the console
+    });
+
+    inventoryList.appendChild(product); // appends the inventory list using the product
+};
