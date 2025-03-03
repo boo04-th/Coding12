@@ -1,51 +1,41 @@
 // Task 1: Business Dashboard – DOM Element Selection and Creation
 
-document.addEventListener("DOMContentLoaded", function(){ // encapsulates most of code with an event listener
-    
-    // creates the dashboard selector by elements
-    const dashboard = document.getElementById("dashboard");
-    const dashboard2 = document.querySelector("#dashboard");
+document.addEventListener("DOMContentLoaded", function(){ // Encapsulates most of code with an event listener
+    const dashboard = document.getElementById("dashboard"); // Creates the dashboard selector by elements
+    const dashboard2 = document.querySelector("#dashboard"); // Creates the dashboard selector by elements
+    dashboard.appendChild(createMetricCard("revenueCard", "Revenue", 200));//Appending Revenue card first to prove both selections point to the same element
 
-    // appends the metric card
-    dashboard.appendChild(createMetricCard("revenueCard", "Revenue", 120));
-
-    function createMetricCard(id, title, amount) { // creates function
-        const metricDiv = document.createElement("div");
+    function createMetricCard(id, title, amount) { //Function to create a metric card dynamically
+        const metricDiv = document.createElement("div"); //Creating a div element for the metric card
         
-        // sets the different attributes
-        metricDiv.setAttribute("id", id);
-        metricDiv.setAttribute("class", "metric-card");
+        metricDiv.setAttribute("id", id); //Setting an ID for the div
+        metricDiv.setAttribute("class", "metric-card"); //Assigning the class "metric-card"
 
-        const heading = document.createElement("h3");
+        const heading = document.createElement("h3"); //Creating an h3 element for the title
 
-        // makes the heading text "title"
-        heading.textContent = title;
+        heading.textContent = title; //Makes the heading text "title"
 
-        const paragraph = document.createElement("p");
+        const paragraph = document.createElement("p"); //Creating a paragraph element for the amount
 
-        // makes text the money amount
-        paragraph.textContent = `$${amount}`;
+        paragraph.textContent = `$${amount}`; //Setting the text content with the dollar amount
 
-        metricDiv.appendChild(heading);
+        metricDiv.appendChild(heading); //Appending the heading and paragraph to the metric card
         metricDiv.appendChild(paragraph);
 
-        return metricDiv;
+        return metricDiv; //Returning the created metric card
     };
 
 // Task 2: Updating Dashboard Metrics – Working with NodeLists and Arrays
-    // creates the metric cards 
-    dashboard2.appendChild(createMetricCard("profitCard", "Profit", 80));
-    dashboard.appendChild(createMetricCard("expensesCard", "Expenses", 50));
+    dashboard2.appendChild(createMetricCard("profitCard", "Profit", 160)); //Creating and appending more metric cards 
+    dashboard.appendChild(createMetricCard("expensesCard", "Expenses", 130)); //Creating and appending more metric cards 
 
-    const metricCards = document.querySelectorAll(".metric-card");
-    const metricCardsArray = Array.from(metricCards); // makes metricCards an array
+    const metricCards = document.querySelectorAll(".metric-card"); //Selecting all metric cards
+    const metricCardsArray = Array.from(metricCards); //Converting the NodeList to an array
 
-    metricCardsArray.forEach((card) => { // goes through the array for each item
-        const myHeading = card.querySelector("h3");
-
-        myHeading.textContent += " - Updated"; // updates the revenue
-
-        card.style.backgroundColor = "#fdebd0";
+    metricCardsArray.forEach((card) => { //Looping through each metric card to update its content and style
+        const myHeading = card.querySelector("h3"); //Selecting the <h3> inside the card
+        myHeading.textContent += " - Updated"; // Updates the revenue
+        card.style.backgroundColor = "#fdebd0"; //Changing the background color
     });
 
 
@@ -53,13 +43,10 @@ document.addEventListener("DOMContentLoaded", function(){ // encapsulates most o
 
     const customerSectionDiv = document.getElementById("customerSection");
 
-    function addCustomerCard(name) { // creates a function to add a customer card
+    function addCustomerCard(name) { // Creates a function to add a customer card
         const customerDiv = document.createElement("div");
-
         customerDiv.setAttribute("class", "customer-card");
-
-        customerDiv.textContent = name;
-
+        customerDiv.textContent = name; ///Setting the text content to the customer's name
         customerDiv.addEventListener("click", (event) => { // listens for an event
             console.log("Customer Card Clicked"); // logs the sentence in the console when event is heard
             event.stopPropagation;
@@ -72,9 +59,10 @@ document.addEventListener("DOMContentLoaded", function(){ // encapsulates most o
         console.log("Customer Section Clicked"); // when hears event logs message in the console
     });
 
-    // creates the customer card
+    //Adding two customer cards dynamically
     addCustomerCard("First Customer");
     addCustomerCard("Second Customer");
+    addCustomerCard("Third Customer");
     
 });
 
@@ -82,18 +70,17 @@ document.addEventListener("DOMContentLoaded", function(){ // encapsulates most o
 
 function addItemToInventory(product) { // creates function that will add inventory items
     const inventoryList = document.getElementById("inventoryList");
-    const newListItem = document.createElement("li");
+    const newList = document.createElement("li");
 
-    // sets attributes for list items
-    newListItem.setAttribute("class", "product-item");
-    newListItem.setAttribute("data-product", product);
-    newListItem.textContent = product;
+    newList.setAttribute("class", "product-item"); // Attributes for list items
+    newList.setAttribute("data-product", product);
+    newList.textContent = product;
 
-    newListItem.addEventListener("click", function() { // listens for a click event
-        inventoryList.removeChild(product); // removes item in inventory list
+    newList.addEventListener("click", function() { // Adding for a click event
+        inventoryList.removeChild(product); //Removing item in inventory list
 
-        console.log(`Removed Item: ${product}`); // logs the removed items in the console
+        console.log(`Removed Item: ${product}`); //Logging the removed items in the console
     });
 
-    inventoryList.appendChild(product); // appends the inventory list using the product
+    inventoryList.appendChild(product); //Appends the inventory list using the product
 };
